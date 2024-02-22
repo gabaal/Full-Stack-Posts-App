@@ -9,21 +9,24 @@ const db = new pg.Pool({
 });
 
 // Create table for categories
+
 db.query(`CREATE TABLE IF NOT EXISTS categories (
   id SERIAL PRIMARY KEY,
   category VARCHAR(255) NOT NULL
 )`)
 
 // Create table for posts
+
 db.query(`CREATE TABLE IF NOT EXISTS posts (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
-  post TEXT NOT NULL,
-  category_id INT NOT NULL,
+  post TEXT,
+  category_id INT,
   FOREIGN KEY (category_id) REFERENCES categories(id)
 )`)
 
 // Insert categories data
+
 // db.query(`INSERT INTO categories (category)
 //   VALUES
 //     ('Technology'),
@@ -35,6 +38,7 @@ db.query(`CREATE TABLE IF NOT EXISTS posts (
 // `)
 
 // Insert posts data
+
 db.query(`INSERT INTO posts (title,post, category_id)
   VALUES
     ('Technology', 'Technology post', 1),

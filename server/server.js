@@ -60,7 +60,31 @@ app.post('/categories', async (request, response) => {
     `INSERT INTO categories (category)
     VALUES ($1)
     RETURNING *;`,
-    [Weather]
+    [category]
   );
   response.json(result.rows); 
+})
+
+// Delete post route
+app.delete('/posts/:id', async (request, response) => {
+  const { id } = request.params;
+  const result = await db.query(
+    `DELETE FROM posts
+    WHERE id = $1
+    RETURNING *;`,
+    [id]
+  );
+  response.json(result.rows);
+})
+
+//Delete category route
+app.delete('/categories/:id', async (request, response) => {
+  const { id } = request.params;
+  const result = await db.query(
+    `DELETE FROM categories
+    WHERE id = $1
+    RETURNING *;`,
+    [id]
+  );
+  response.json(result.rows);
 })
