@@ -37,3 +37,6 @@ Make in the order:
 - [ ] Allow users to "Like" posts and increase the likes
 - [ ] Allow users to DELETE posts
 - [ ] Allow users to filter posts in a specific category. Use either a query string like /posts?category=education or a dedicated route for the categories at /posts/:categoryName.
+
+![posts database setup](https://github.com/gabaal/Full-Stack-Posts-App/assets/36296159/c79b8a06-04ed-4b32-8aab-e37c1135876d)
+
