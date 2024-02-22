@@ -29,3 +29,38 @@ app.get('/', (request, response) => {
 });
 
 // Get posts route
+app.get('/posts', async (request, response) => {
+  const result = await db.query(`SELECT * FROM posts;`);
+  response.json(result.rows);
+})
+
+// Get categories route
+app.get('/categories', async (request, response) => {
+  const result = await db.query(`SELECT * FROM categories;`);
+  response.json(result.rows);
+})
+
+// Post post route
+app.post('/posts', async (request, response) => {
+  const { title, post, category_id } = request.body;
+  const result = await db.query(
+    `INSERT INTO posts (title, post, category_id)
+    VALUES ($1, $2, $3)
+    RETURNING *;`,
+    [title, post, category_id]
+  );
+  response.json(result.rows);
+})
+
+
+// Post category route
+app.post('/categories', async (request, response) => {
+  const { category } = request.body;
+  const result = await db.query(
+    `INSERT INTO categories (category)
+    VALUES ($1)
+    RETURNING *;`,
+    [Weather]
+  );
+  response.json(result.rows); 
+})
