@@ -10,7 +10,7 @@ Putting together the React client code, Node.js server code and Postgres databas
 - [x] As a user, I want to be able to assign a category to each post
 - [x] As a user, I want to be able to view all posts added on the page and the category they're in
 - [ ] As a user, I want to be able to view all posts in a specific category by visiting a dedicated page for that category (Stretch Goal)
-- [ ] As a user, I want to be able to add new categories (Stretch Goal)
+- [x] As a user, I want to be able to add new categories (Stretch Goal)
 
 ## Requirements
 

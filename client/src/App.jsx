@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import './App.css'
 import HomePage from './components/HomePage';
 import CreatePost from './components/CreatePost';
+import AddCategory from './components/AddCategory';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 
       <Routes>
         <Route path="/create" element={<CreatePost />} />
+        <Route path="/newCategory" element={<AddCategory />} />
         <Route path="/" element={<HomePage />} />
       </Routes>
       </div>

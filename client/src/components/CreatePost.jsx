@@ -1,12 +1,30 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./createPost.css"
 
 export default function CreatePost() {
   const [title, setTitle] = useState('');
   const [post, setPost] = useState('');
-  const [categoryId, setCategoryId] = useState(null);
+  const [categoryId, setCategoryId] = useState('');
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/categories');
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -15,7 +33,7 @@ export default function CreatePost() {
       const postData = {
         title,
         post,
-        category_id: categoryId !== '' ? parseInt(categoryId) : null, // Ensure categoryId is sent as an integer or null
+        category_id: categoryId !== '' ? parseInt(categoryId) : null,
       };
 
       const response = await fetch('http://localhost:5000/posts', {
@@ -27,14 +45,12 @@ export default function CreatePost() {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Failed to create post');
       }
 
-      // Clear form fields after successful post creation
       setTitle('');
       setPost('');
-      setCategoryId(null); // Reset categoryId after successful post creation
-
+      setCategoryId('');
       alert('Post created successfully!');
     } catch (error) {
       console.error('Error creating post:', error);
@@ -66,13 +82,19 @@ export default function CreatePost() {
           />
         </div>
         <div>
-          <label htmlFor="category">Category ID (optional):</label>
-          <input
-            type="number"
+          <label htmlFor="category">Category:</label>
+          <select
             id="category"
-            value={categoryId !== null ? categoryId : ''}
-            onChange={(e) => setCategoryId(e.target.value !== '' ? e.target.value : null)} // Ensure categoryId is stored as string
-          />
+            value={categoryId}
+            onChange={(e) => setCategoryId(e.target.value)}
+          >
+            <option value="">Select a category</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.category}
+              </option>
+            ))}
+          </select>
         </div>
         <button type="submit">Create Post</button>
       </form>
