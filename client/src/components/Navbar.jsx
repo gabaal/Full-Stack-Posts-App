@@ -7,6 +7,7 @@ export default function Navbar() {
       <h1>The Daily Post</h1>
       <div className="links">
         <Link to="/">Home</Link>
+        <Link to="/posts">Posts</Link>
         <Link to="/create">New Post</Link>
         <Link to="/newCategory">New Category</Link>
       </div>

@@ -1,59 +1,54 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import { useState, useEffect } from "react";
-import "./homePage.css"
+import React, { useState, useEffect } from 'react';
+import Modal from './Modal'; // Import the Modal component
 
 export default function HomePage() {
   const [posts, setPosts] = useState([]);
-  
+  const [hoveredPost, setHoveredPost] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
-    const getPosts = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/posts");
+        const response = await fetch('http://localhost:5000/posts');
         if (!response.ok) {
-          throw new Error("Something went wrong!");
+          throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        setPosts(data);
+        const jsonData = await response.json();
+        setPosts(jsonData);
       } catch (error) {
-        console.log('Error fetching data:', error);
+        console.error('Error fetching data:', error);
       }
     };
-    getPosts();
+
+    fetchData();
   }, []);
-  
-  const handleDelete = async (postId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/posts/${postId}`, {
-        method: 'DELETE',
-    });
-    if (!response.ok) {
-      throw new Error('Something went wrong!');
-    }
-    setPosts(posts.filter(post => post.id!== postId));
-    alert('Post deleted');
-  } catch (error) {
-    console.log('Error deleting post:', error);
-    alert('Error deleting post');
-  }
-}
-  
-  
+
+  const handleMouseEnter = (post) => {
+    setHoveredPost(post);
+    setIsModalOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="HomePage">
-      <h1>Posts</h1>
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>
-            <div className="post-header">
-              <h2>{post.title}</h2>
-              <button className="delete-button" onClick={() => handleDelete(post.id)}>Delete</button>
-            </div>
-            <p>{post.post}</p>
-            <p>Category: {post.category}</p>
-          </li>
-        ))}
-      </ul>
+      <h1>Welcome to the Daily Post</h1>
+      {posts.map(post => (
+        <div key={post.id} className="post">
+          <h2 onMouseEnter={() => handleMouseEnter(post)} onMouseLeave={handleMouseLeave}>
+            {post.title}
+          </h2>
+        </div>
+      ))}
+      {isModalOpen && hoveredPost && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <h2>{hoveredPost.title}</h2>
+          <p>{hoveredPost.post}</p>
+          <p>Category: {hoveredPost.category}</p>
+        </Modal>
+      )}
     </div>
   );
 }
