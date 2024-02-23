@@ -64,6 +64,7 @@
   background-color: #ff6347;
   color: #fff;
   border: none;
+  margin:5px;
   padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
@@ -75,4 +76,23 @@
   margin-top: 10px;
   margin-bottom: 10px;
   font-style: italic;
+}
+.likes-container {
+  display: flex;
+  justify-content: space-between; /* Align items to left and right */
+}
+
+.like-button {
+  background-color: #75c09c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin:5px;
+
+  cursor: pointer;
+}
+
+.like-button:hover {
+  background-color: #459770;
 }

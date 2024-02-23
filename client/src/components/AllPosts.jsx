@@ -59,10 +59,6 @@ export default function AllPosts() {
     try {
       const response = await fetch(`http://localhost:5000/posts/${postId}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        // body: JSON.stringify({ incrementLikes: true }), // Indicate to increment likes
       });
       if (!response.ok) {
         throw new Error('Failed to like post');
@@ -98,10 +94,14 @@ export default function AllPosts() {
           <div key={post.id} className="post-item">
             <h2 className="post-title">{post.title}</h2>
             <button className="delete-button" onClick={() => handleDeletePost(post.id)}>Delete</button>
-            <button className="like-button" onClick={() => handleLikePost(post.id)}>Like</button>
             <p>{post.post}</p>
             <p className="post-category">Category: {post.category}</p>
+            
+            <div className="likes-container">
             <p className="likes">Likes: {post.likes}</p>
+            <button className="like-button" onClick={() => handleLikePost(post.id)}>Like</button>
+            </div>
+            
           </div>
         ))}
       </div>

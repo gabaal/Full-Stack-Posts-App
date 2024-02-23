@@ -34,7 +34,7 @@ Make in the order:
 
 ## Stretch Goals
 
-- [ ] Allow users to "Like" posts and increase the likes
+- [x] Allow users to "Like" posts and increase the likes
 - [x] Allow users to DELETE posts
 - [x] Allow users to filter posts in a specific category. Use either a query string like /posts?category=education or a dedicated route for the categories at /posts/:categoryName.
 

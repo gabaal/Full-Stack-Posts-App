@@ -30,7 +30,7 @@
 }
 
 .CreatePost button {
-  background-color: #007bff;
+  background-color: #75c09c;
   color: #fff;
   border: none;
   padding: 8px 20px;
@@ -39,5 +39,5 @@
 }
 
 .CreatePost button:hover {
-  background-color: #0056b3;
+  background-color: #459770;
 }

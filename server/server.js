@@ -93,14 +93,9 @@ app.delete('/categories/:id', async (request, response) => {
   response.json(result.rows);
 })
 
-//Put post route
+// Put post route
 app.put('/posts/:id', async (request, response) => {
-  const postId = request.params;
-  const { incrementLikes } = request.body;
-  if (incrementLikes !== true) {
-    response.status(400).json({ error: 'Bad request' });
-    return;
-  }
+  const postId = request.params.id; // Extract post ID from request.params
   try {
     // Increment likes count in the database
     await db.query(`
