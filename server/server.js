@@ -30,7 +30,11 @@ app.get('/', (request, response) => {
 
 // Get posts route
 app.get('/posts', async (request, response) => {
-  const result = await db.query(`SELECT * FROM posts;`);
+  const result = await db.query(`SELECT
+  posts.id, posts.title, posts.post, categories.category
+  FROM posts
+  LEFT JOIN categories ON posts.category_id = categories.id
+  ORDER BY posts.id DESC;`);
   response.json(result.rows);
 })
 

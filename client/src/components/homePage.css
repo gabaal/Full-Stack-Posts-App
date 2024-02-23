@@ -1,0 +1,40 @@
+/* HomePage.css */
+.HomePage {
+  margin-bottom: 40px;
+}
+
+.HomePage h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.HomePage ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.HomePage li {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.HomePage .post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.HomePage .delete-button {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.HomePage .delete-button:hover {
+  background-color: #cc4125;
+}
