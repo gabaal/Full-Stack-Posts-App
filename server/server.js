@@ -31,7 +31,7 @@ app.get('/', (request, response) => {
 // Get posts route
 app.get('/posts', async (request, response) => {
   const result = await db.query(`SELECT
-  posts.id, posts.title, posts.post, categories.category
+  posts.id, posts.title, posts.post, posts.likes, categories.category
   FROM posts
   LEFT JOIN categories ON posts.category_id = categories.id
   ORDER BY posts.id DESC;`);
@@ -92,3 +92,31 @@ app.delete('/categories/:id', async (request, response) => {
   );
   response.json(result.rows);
 })
+
+//Put post route
+app.put('/posts/:id', async (request, response) => {
+  const postId = request.params;
+  const { incrementLikes } = request.body;
+  if (incrementLikes !== true) {
+    response.status(400).json({ error: 'Bad request' });
+    return;
+  }
+  try {
+    // Increment likes count in the database
+    await db.query(`
+      UPDATE posts
+      SET likes = likes + 1
+      WHERE id = $1;
+    `, [postId]);
+    
+    const result = await db.query(`
+      SELECT id, title, post, likes
+      FROM posts
+      WHERE id = $1;
+    `, [postId]);
+    response.json(result.rows[0]);
+  } catch (error) {
+    console.error('Error updating post:', error);
+    response.status(500).json({ error: 'Internal server error' });
+  }
+});

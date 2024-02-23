@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from'react';
+import React, { useState } from'react';
 import "./addCategory.css"
 
 export default function AddCategory() {
@@ -30,7 +30,7 @@ export default function AddCategory() {
 
   return (
     <div className="AddCategory">
-      <h2>Add Category</h2>
+      <h2>Add a New Category</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="category">Category Name:</label>

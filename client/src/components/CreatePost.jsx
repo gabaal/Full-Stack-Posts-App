@@ -60,7 +60,7 @@ export default function CreatePost() {
 
   return (
     <div className="CreatePost">
-      <h2>Create Post</h2>
+      <h2>Add a New Post</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title:</label>

@@ -1,6 +1,20 @@
-/* App.css */
 .App {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #f1356d;
+}
+
+h2 {
+  margin-bottom: 10px;
+  /* text-align: center; */
+}
+h3 {
+  margin-bottom: 10px;
 }
