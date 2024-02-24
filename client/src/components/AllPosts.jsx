@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import "./allPosts.css"
 
 export default function AllPosts() {
@@ -48,7 +50,7 @@ export default function AllPosts() {
       await fetch(`http://localhost:5000/posts/${postId}`, {
         method: 'DELETE',
       });
-      // Remove the deleted post from the state
+
       setPosts(posts.filter(post => post.id !== postId));
     } catch (error) {
       console.error('Error deleting post:', error);
@@ -63,9 +65,9 @@ export default function AllPosts() {
       if (!response.ok) {
         throw new Error('Failed to like post');
       }
-      // Refresh the posts after liking
+
       const updatedPost = await response.json();
-      // Update the state with the updated post
+
       setPosts(posts.map(post => post.id === postId ? { ...post, likes: parseInt(updatedPost.likes) } : post));
     } catch (error) {
       console.error('Error liking post:', error);
@@ -96,12 +98,12 @@ export default function AllPosts() {
             <button className="delete-button" onClick={() => handleDeletePost(post.id)}>Delete</button>
             <p>{post.post}</p>
             <p className="post-category">Category: {post.category}</p>
-            
-            <div className="likes-container">
-            <p className="likes">Likes: {post.likes}</p>
-            <button className="like-button" onClick={() => handleLikePost(post.id)}>Like</button>
+            <div className="like-container" onClick={() => handleLikePost(post.id)}>
+              <div className="likes">
+                <FontAwesomeIcon icon={faThumbsUp} />
+                <span>{post.likes}</span>
+              </div>
             </div>
-            
           </div>
         ))}
       </div>

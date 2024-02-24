@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./createPost.css"
 
@@ -63,10 +62,12 @@ export default function CreatePost() {
       <h2>Add a New Post</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Title:</label>
+          <label htmlFor="title">Title: </label>
           <input
             type="text"
             id="title"
+            maxlength="30"
+            placeholder="Maximun 30 characters"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required

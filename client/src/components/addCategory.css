@@ -3,7 +3,10 @@
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
 }
 
 .AddCategory h2 {

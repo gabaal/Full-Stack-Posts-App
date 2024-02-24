@@ -1,5 +1,12 @@
 # Build a database driven React app
 
+The project uses the Font Awesome package for icons:
+- npm install --save @fortawesome/fontawesome-svg-core
+- npm install --save @fortawesome/free-solid-svg-icons
+- npm install --save @fortawesome/react-fontawesome
+
+Something went wrong with the Github action and I have ended up with node_modules in the root folder and in the client and server folders.
+
 ## Overview
 
 Putting together the React client code, Node.js server code and Postgres database to build a full stack React application.

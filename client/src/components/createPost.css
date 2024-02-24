@@ -3,7 +3,10 @@
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
 }
 
 .CreatePost h2 {
@@ -13,6 +16,7 @@
 
 .CreatePost form div {
   margin-bottom: 15px;
+  
 }
 
 .CreatePost label {

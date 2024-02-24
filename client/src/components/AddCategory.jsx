@@ -31,12 +31,15 @@ export default function AddCategory() {
   return (
     <div className="AddCategory">
       <h2>Add a New Category</h2>
+      <br></br>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="category">Category Name:</label>
           <input
             type="text"
             id="category"
+            placeholder="Maximun 30 characters"
+            maxlength="30"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required

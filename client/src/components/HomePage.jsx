@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Modal from './Modal';
+import './homePage.css';
 
 export default function HomePage() {
   const [posts, setPosts] = useState([]);
@@ -22,13 +22,23 @@ export default function HomePage() {
     fetchData();
   }, []);
 
+  const handlePostMouseEnter = (post) => {
+    setHoveredPost(post);
+  };
+
+  const handlePostMouseLeave = () => {
+    setHoveredPost(null);
+  };
+
   return (
     <div className="HomePage">
       <h1>Welcome to the Daily Post</h1>
-      <h2>A collection of posts from current affairs to the weather. Here are the latest posts:</h2>
+      <h2>A collection of posts from current affairs to the weather.</h2><br></br>
+      <h2>Here are the latest posts:</h2>
+      <br></br>
       {posts.slice(0, 7).map(post => (
         <div key={post.id} className="post">
-          <h3 onMouseEnter={() => setHoveredPost(post)} onMouseLeave={() => setHoveredPost(null)}>
+          <h3 onMouseEnter={() => handlePostMouseEnter(post)} onMouseLeave={handlePostMouseLeave}>
             {post.title}
           </h3>
         </div>
